@@ -55,5 +55,9 @@ namespace AddressBookSystem
         { 
             return email; 
         }
+        public override string ToString()
+        {
+            return "[ "+firstName + " " + lastName +" "+ address +" "+ city +" "+ state +" "+ zip +" "+ phoneNumber +" "+ email +" ]";
+        }
     }
 }
