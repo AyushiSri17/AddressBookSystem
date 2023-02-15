@@ -8,53 +8,15 @@ namespace AddressBookSystem
 {
     public class Contact
     {
-        private string firstName, lastName, address, city, state, email;
-        private int zip;
-        private long phoneNumber;
-        
-        public Contact(string firstName,string lastName,string address,string city,string state,int zip,long phoneNumber,string email) 
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.address = address;
-            this.city = city;
-            this.state = state;
-            this.zip = zip;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
-        }
-        public string getFirstName()
-        { 
-            return firstName; 
-        }
-        public string getLastName()
-        {
-            return lastName; 
-        }
-        public string getAddress() 
-        { 
-            return address; 
-        }
-        public string getCity() 
-        { 
-            return city; 
-        }
-        public string getState() 
-        { 
-            return state; 
-        }
-        public int getZip() 
-        { 
-            return zip; 
-        }
-        public long getPhoneNumber() 
-        { 
-            return phoneNumber; 
-        }
-        public string getEmail() 
-        { 
-            return email; 
-        }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public int zip { get; set; }
+        public long phoneNumber { get; set; }
+        public string email { get; set; }
+
         public override string ToString()
         {
             return "[ "+firstName + " " + lastName +" "+ address +" "+ city +" "+ state +" "+ zip +" "+ phoneNumber +" "+ email +" ]";
