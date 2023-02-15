@@ -15,7 +15,7 @@ namespace AddressBookSystem
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("1. Create Contact \n2. Edit Contact \n3. Delete Contact \n4. Exit");
+                Console.WriteLine("1. Create Contact \n2. Edit Contact \n3. Delete Contact \n4. Add Multiple Contact \n5. Exit");
                 int select = Convert.ToInt32(Console.ReadLine());
                 switch (select)
                 {
@@ -40,6 +40,11 @@ namespace AddressBookSystem
                         addressBook.Display();
                         break;
                     case 4:
+                        addressBook.Details();
+                        addressBook.Display();
+                        flag= false;
+                        break;
+                    case 5:
                         flag = false;
                         Console.WriteLine("Exist");
                         break;

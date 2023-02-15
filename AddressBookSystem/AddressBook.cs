@@ -8,11 +8,14 @@ namespace AddressBookSystem
 {
     public class AddressBook
     {
-        List<Contact> list;
+        List<Contact> list = new List<Contact>();
         Contact contact;
         public void Details()
         {
-            list = new List<Contact>();           
+            Console.WriteLine("Enter the number of Contact want to add");
+            int n = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
                 contact = new Contact();
                 Console.WriteLine("Enter first name");
                 contact.firstName = Console.ReadLine();
@@ -29,9 +32,10 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter Phone number");
                 contact.phoneNumber = Convert.ToInt64(Console.ReadLine());
                 Console.WriteLine("Enter Email");
-                contact.email = Console.ReadLine();  
+                contact.email = Console.ReadLine();
                 list.Add(contact);
                 //Console.WriteLine(contact);
+            }
         } 
         public void Display()
         {
