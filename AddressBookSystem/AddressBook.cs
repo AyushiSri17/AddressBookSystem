@@ -41,7 +41,7 @@ namespace AddressBookSystem
             }
         }
 
-        public void EditContact(String editContact)
+        public void EditContact(string editContact)
         {
             //check the name is present or not
             foreach (var data in list)
@@ -96,6 +96,24 @@ namespace AddressBookSystem
                 else
                 {
                     Console.WriteLine("Contact not found in AddressBook");
+                }
+            }
+        }
+
+        public void DeleteContact(string delectContact)
+        {
+            foreach (var data in list)
+            {
+                if (delectContact.Equals(data.firstName) || delectContact.Equals(data.lastName))
+                {
+                    Console.WriteLine("Contact matched");
+                    list.Remove(data);
+                    Console.WriteLine("Contact deleted");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Contact doesn't exist");
                 }
             }
         }
