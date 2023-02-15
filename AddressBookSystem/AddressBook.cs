@@ -9,11 +9,21 @@ namespace AddressBookSystem
     public class AddressBook
     {
         List<Contact> list = new List<Contact>();
+        public Dictionary<string, List<Contact>> contactDictionary = new Dictionary<string, List<Contact>>();
         Contact contact;
         public void Details()
         {
-            Console.WriteLine("Enter the number of Contact want to add");
+            Console.WriteLine("Enter the Number of AddressBook do you want to make");
+            int numAddressBook = Convert.ToInt32(Console.ReadLine());
+            string addressBookName;
+            int num = 0;
+            while (num < numAddressBook)
+            {
+             Console.WriteLine("Enter addressbook name to add contacts");
+             addressBookName = Console.ReadLine();
+             Console.WriteLine("Enter the number of Contact want to add in {0} AddressBook",addressBookName);
             int n = Convert.ToInt32(Console.ReadLine());
+            list = new List<Contact>();
             for (int i = 0; i < n; i++)
             {
                 contact = new Contact();
@@ -36,7 +46,30 @@ namespace AddressBookSystem
                 list.Add(contact);
                 //Console.WriteLine(contact);
             }
-        } 
+                contactDictionary.Add(addressBookName, list);
+                num++;
+            }
+        }
+
+        public void DisplayAdressBook()
+        {
+            foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+            {
+                Console.WriteLine("AddressBook Name: "+ keyValue.Key);
+                Console.WriteLine("\nDisplaying the person details\n");
+                foreach (Contact contact in keyValue.Value)
+                {
+                    Console.WriteLine("First Name:" + contact.firstName);
+                    Console.WriteLine("Last Name:" + contact.lastName);
+                    Console.WriteLine("Adress:" + contact.address);
+                    Console.WriteLine("City:" + contact.city);
+                    Console.WriteLine("Zip Code:" + contact.zip);
+                    Console.WriteLine("Phone Number:" + contact.phoneNumber);
+                    Console.WriteLine("Email:" + contact.email);
+                    Console.WriteLine("\n");
+                }
+            }
+        }
         public void Display()
         {
             foreach (Contact contacts in list)
