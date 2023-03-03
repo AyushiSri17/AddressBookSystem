@@ -8,7 +8,7 @@ namespace AddressBookSystem
 {
     public class AddressBook
     {
-        List<Contact> list = new List<Contact>();
+        public List<Contact> list = new List<Contact>();
         public Dictionary<string, List<Contact>> contactDictionary = new Dictionary<string, List<Contact>>();
         Contact contact;
         public void Details()
@@ -154,5 +154,29 @@ namespace AddressBookSystem
                 }
             }
         }
+        public void CheckDuplicateEntryOfAContact()
+        {
+            Console.WriteLine("Enter first name to which you want to  check duplicate entry ");
+            string name = Console.ReadLine();
+            bool isFound = false;
+                foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                {
+                    //Console.WriteLine("AddressBook Name: " + keyValue.Key);
+                    //Console.WriteLine("\nDisplaying the person details\n");
+                    foreach (Contact contact in keyValue.Value)
+                    {
+                   // bool check = list.Any(s => name.ToLower()== contact.firstName.ToLower());//present in IEnumerable and determines whether the sequence satisfies a condition or not
+                    if (list.Any(s => name.ToLower() == contact.firstName.ToLower()))
+                        {
+                            Console.WriteLine("person named {0} is aleady present in address book {1}",name, keyValue.Key);
+                            isFound = true;
+                            break;
+                        }
+                    }
+                }
+              if (isFound == false) 
+                Console.WriteLine("contact does not Exists");
+        }
+
     }
 }
