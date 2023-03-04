@@ -234,7 +234,7 @@ namespace AddressBookSystem
         {
             //Console.Clear();
             Console.WriteLine("Select option for search");
-            Console.WriteLine("1.Search Person In City\n2.Search Person In State\n");
+            Console.WriteLine("1.Search Contact In City\n2.Search Contact In State\n");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -270,6 +270,51 @@ namespace AddressBookSystem
                         }
                     }
                     Console.WriteLine("Persons living {0} is not found in the AddressBook ", stateName);
+                    break;
+                default:
+                    Console.WriteLine("select only valid options");
+                    break;
+            }
+        }
+
+        public void CountPersonByCityOrState()
+        {
+            //Console.Clear();
+            Console.WriteLine("Select option for search");
+            Console.WriteLine("1.Count Person In City\n2.Count Person In State\n");
+            int count = 0;
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter that City name where you want to search the person  ");
+                    string cityName = Console.ReadLine();
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        foreach (Contact contact in keyValue.Value)
+                        {
+                            if (list.Any(s => contact.city.ToLower() == cityName.ToLower()))
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                    Console.WriteLine("Total number of contact in " + cityName + " is "+count);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the state name where you want to search the person  ");
+                    string stateName = Console.ReadLine();
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        foreach (Contact contact in keyValue.Value)
+                        {
+                            if (list.Any(s => contact.state.ToLower() == stateName.ToLower()))
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                    Console.WriteLine("Total number of contact in " + stateName + " is " + count);
                     break;
                 default:
                     Console.WriteLine("select only valid options");
