@@ -16,7 +16,7 @@ namespace AddressBookSystem
             while (flag)
             {
                 Console.WriteLine("1. Create Contact \n2. Edit Contact \n3. Delete Contact \n4. Add Multiple Contact" +
-                    " \n5. Create Multiple Address Book \n6. Exit \n7. Check for duplicate entry \n8. Search a Person By City or State\r\n");
+                    " \n5. Create Multiple Address Book \n6. Exit \n7. Check for duplicate entry \n8. Search a Person By City or State \n9. View Person by city or State");
                 int select = Convert.ToInt32(Console.ReadLine());
                 switch (select)
                 {
@@ -60,10 +60,16 @@ namespace AddressBookSystem
                         addressBook.CheckDuplicateEntryOfAContact();
                         flag = false;
                         break;
-                        case 8:
+                    case 8:
                         addressBook.Details();
                         addressBook.DisplayAdressBook();
                         addressBook.SearchAPersonByCityOrState();
+                        flag = false;
+                        break;
+                    case 9:
+                        addressBook.Details();
+                        addressBook.DisplayAdressBook();
+                        addressBook.ViewPersonByCityOrState();
                         flag = false;
                         break;
                     default:

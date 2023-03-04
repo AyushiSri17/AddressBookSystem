@@ -230,5 +230,52 @@ namespace AddressBookSystem
             }
         }
 
+        public void ViewPersonByCityOrState()
+        {
+            //Console.Clear();
+            Console.WriteLine("Select option for search");
+            Console.WriteLine("1.Search Person In City\n2.Search Person In State\n");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter that City name where you want to search the person  ");
+                    string cityName = Console.ReadLine();
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("Address Book Name: " + keyValue.Key);
+                        foreach (Contact contact in keyValue.Value)
+                        {
+                            if (list.Any(s => contact.city.ToLower() == cityName.ToLower()))
+                            {
+                                Console.WriteLine("\nThe Contact Details of persons living in " + cityName + " are:\nFirstName: " + contact.firstName + "\nLastName: " + contact.lastName + " \nZipcode: " + contact.zip + "\nPhoneNumber: " + contact.phoneNumber);
+                            }
+                        }
+                    }
+                    Console.WriteLine("Person living {0} is not found in the AddressBook ", cityName);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the state name where you want to search the person  ");
+                    string stateName = Console.ReadLine();
+                    
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("Address Book Name: " + keyValue.Key);
+                        foreach (Contact contact in keyValue.Value)
+                        {
+                            if (list.Any(s => contact.state.ToLower() == stateName.ToLower()))
+                            {
+                                Console.WriteLine("\nThe Contact Details of person  living in " + stateName + " are:\nFirstName: " + contact.firstName + "\nLastName: " + contact.lastName + " \nZipcode: " + contact.zip + "\nPhoneNumber: " + contact.phoneNumber);
+                            }
+                        }
+                    }
+                    Console.WriteLine("Persons living {0} is not found in the AddressBook ", stateName);
+                    break;
+                default:
+                    Console.WriteLine("select only valid options");
+                    break;
+            }
+        }
+
     }
 }
