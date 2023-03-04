@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AddressBookSystem
 {
@@ -63,6 +64,7 @@ namespace AddressBookSystem
                     Console.WriteLine("Last Name:" + contact.lastName);
                     Console.WriteLine("Adress:" + contact.address);
                     Console.WriteLine("City:" + contact.city);
+                    Console.WriteLine("State:" + contact.state);
                     Console.WriteLine("Zip Code:" + contact.zip);
                     Console.WriteLine("Phone Number:" + contact.phoneNumber);
                     Console.WriteLine("Email:" + contact.email);
@@ -176,6 +178,56 @@ namespace AddressBookSystem
                 }
               if (isFound == false) 
                 Console.WriteLine("contact does not Exists");
+        }
+
+        public void SearchAPersonByCityOrState()
+        {
+            //Console.Clear();
+            Console.WriteLine("Select option for search");
+            Console.WriteLine("1.Search Person In City\n2.Search Person In State\n");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter that City name where you want to search the person  ");
+                    string cityName = Console.ReadLine();
+                    Console.WriteLine("Enter person name whom you want to search in City ");
+                    string cityPersonName = Console.ReadLine();
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("Address Book Name: " + keyValue.Key);
+                        foreach (Contact contact in keyValue.Value)
+                        {
+                            if (list.Any(s => contact.city.ToLower() == cityName.ToLower() && contact.firstName.ToLower() == cityPersonName.ToLower()))
+                            {
+                                Console.WriteLine("The Contact Details of person "+cityPersonName+" living in " + cityName + " are:\nFirstName: " + contact.firstName + "\nLastName: " + contact.lastName + " \nZipcode: " + contact.zip + "\nPhoneNumber: " + contact.phoneNumber);
+                            }
+                        }
+                    }
+                    Console.WriteLine("Person With Name {0} is not found in the AddressBook in City {1}", cityPersonName, cityName);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the state name where you want to search the person  ");
+                    string stateName = Console.ReadLine();
+                    Console.WriteLine("Enter person name whom you want to search in State ");
+                    string statePersonName = Console.ReadLine();
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("Address Book Name: " + keyValue.Key);
+                        foreach (Contact contact in keyValue.Value)
+                        {
+                            if (list.Any(s => contact.state.ToLower() == stateName.ToLower() && contact.firstName.ToLower() == statePersonName.ToLower()))
+                            {
+                                Console.WriteLine("The Contact Details of person " + statePersonName + " living in " + stateName + " are:\nFirstName: " + contact.firstName + "\nLastName: " + contact.lastName + " \nZipcode: " + contact.zip + "\nPhoneNumber: " + contact.phoneNumber);
+                            }
+                        }
+                    }
+                    Console.WriteLine("Person With Name {0} is not found in the AddressBook in State {1}", statePersonName, stateName);
+                    break;
+                default:
+                    Console.WriteLine("select only valid options");
+                    break;
+            }
         }
 
     }
