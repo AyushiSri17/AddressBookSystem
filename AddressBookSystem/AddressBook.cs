@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -335,7 +336,6 @@ namespace AddressBookSystem
                 }
             }
         }
-
         public void SortByCityOrState()
         {
             Console.WriteLine("Select option for sorting");
@@ -386,6 +386,25 @@ namespace AddressBookSystem
                     Console.WriteLine("Select the correct option");
                     break;
             }
+        }
+        public void WriteAndReadContactsIntoFile()
+        {
+            string path = @"C:\Users\Ayushi\source\repos\AddressBookSystem\AddressBookSystem\ContactDetails.txt";
+            //Writing data into file
+            StreamWriter writer = new StreamWriter(path);
+            foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+            {
+                foreach (Contact data in keyValue.Value)
+                {
+                    writer.WriteLine(data);  
+                }
+            }
+            writer.Close();//Closing resources
+            //Reading data from file
+            StreamReader reader = new StreamReader(path);
+            Console.WriteLine(reader.ReadToEnd());
+            Console.ReadLine();
+            reader.Close();//Closing resouces
         }
     }
 }
