@@ -335,5 +335,57 @@ namespace AddressBookSystem
                 }
             }
         }
+
+        public void SortByCityOrState()
+        {
+            Console.WriteLine("Select option for sorting");
+            Console.WriteLine("1. Sort Contact By City\n2. Sort Contact By State\n3. Sort Contact By Zip ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("AddressBook Name: " + keyValue.Key);
+                        Console.WriteLine("\nDisplaying the person details\n");
+                        var data = keyValue.Value.OrderBy(x => x.city.ToLower()).ToList();
+                        foreach (var result in data)
+                        {
+                            Console.WriteLine(result);
+                            Console.WriteLine("\n");
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("AddressBook Name: " + keyValue.Key);
+                        Console.WriteLine("\nDisplaying the person details\n");
+                        var data = keyValue.Value.OrderBy(x => x.state.ToLower()).ToList();
+                        foreach (var result in data)
+                        {
+                            Console.WriteLine(result);
+                            Console.WriteLine("\n");
+                        }
+                    }
+                    break;
+                case 3:
+                    foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+                    {
+                        Console.WriteLine("AddressBook Name: " + keyValue.Key);
+                        Console.WriteLine("\nDisplaying the person details\n");
+                        var data = keyValue.Value.OrderBy(x => x.zip).ToList();
+                        foreach (var result in data)
+                        {
+                            Console.WriteLine(result);
+                            Console.WriteLine("\n");
+                        }
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Select the correct option");
+                    break;
+            }
+        }
     }
 }
