@@ -321,6 +321,19 @@ namespace AddressBookSystem
                     break;
             }
         }
-
+        public void SortingByPersonName()
+        {
+            foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+            {
+                Console.WriteLine("AddressBook Name: " + keyValue.Key);
+                Console.WriteLine("\nDisplaying the person details\n");
+                var data=keyValue.Value.OrderBy(x=>x.firstName.ToLower()).ToList();
+                foreach (var result in data)
+                {
+                    Console.WriteLine(result);
+                    Console.WriteLine("\n");
+                }
+            }
+        }
     }
 }
