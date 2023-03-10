@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -405,6 +407,25 @@ namespace AddressBookSystem
             Console.WriteLine(reader.ReadToEnd());
             Console.ReadLine();
             reader.Close();//Closing resouces
+        }
+
+        public void WriteAndReadContactsAsCSVFile()
+        {
+            //Writing data into file
+            string csvFilePath = @"C:\Users\Ayushi\source\repos\AddressBookSystem\AddressBookSystem\ContactDetails.csv";
+            StreamWriter writer = new StreamWriter(csvFilePath);
+            CsvWriter csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            foreach (KeyValuePair<string, List<Contact>> keyValue in contactDictionary)
+            {                
+                    csvWriter.WriteRecords(keyValue.Value);
+            }
+            //csvWriter.WriteRecords(list);//it will print last addressBook values
+            writer.Close();
+            //Reading data from file
+            StreamReader streamReader = new StreamReader(csvFilePath);
+            CultureInfo culture = CultureInfo.InvariantCulture;
+            CsvReader reader = new CsvReader(streamReader, culture);
+            reader.GetRecords<Contact>().ToList();
         }
     }
 }

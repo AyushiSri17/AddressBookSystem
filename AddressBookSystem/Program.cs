@@ -18,7 +18,7 @@ namespace AddressBookSystem
                 Console.WriteLine("1. Create Contact \n2. Edit Contact \n3. Delete Contact \n4. Add Multiple Contact" +
                     " \n5. Create Multiple Address Book \n6. Exit \n7. Check for duplicate entry \n8. Search a Person By City or State " +
                     "\n9. View Person by city or State \n10. Count Person By city or state \n11. Sorting Contact by name \n" +
-                    "12. Sorting Contact by city,state or zip \n13. Writing and Reading data into file ");
+                    "12. Sorting Contact by city,state or zip \n13. Writing and Reading data into file \n14. Writing And Reading Data as CSV File");
                 int select = Convert.ToInt32(Console.ReadLine());
                 switch (select)
                 {
@@ -93,6 +93,11 @@ namespace AddressBookSystem
                     case 13:
                         addressBook.Details();
                         addressBook.WriteAndReadContactsIntoFile();
+                        flag = false;
+                        break;
+                    case 14:
+                        addressBook.Details();
+                        addressBook.WriteAndReadContactsAsCSVFile();
                         flag = false;
                         break;
                     default:
