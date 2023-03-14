@@ -1,6 +1,8 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -408,7 +410,6 @@ namespace AddressBookSystem
             Console.ReadLine();
             reader.Close();//Closing resouces
         }
-
         public void WriteAndReadContactsAsCSVFile()
         {
             //Writing data into file
@@ -426,6 +427,17 @@ namespace AddressBookSystem
             CultureInfo culture = CultureInfo.InvariantCulture;
             CsvReader reader = new CsvReader(streamReader, culture);
             reader.GetRecords<Contact>().ToList();
+        }
+        public void WriteAndReadContactsAsJSONFile()
+        {
+            //Writing data into file
+            string jsonFilePath = @"C:\Users\Ayushi\source\repos\AddressBookSystem\AddressBookSystem\ContactDetails.json";
+            string jasonData = JsonConvert.SerializeObject(contactDictionary);
+            File.WriteAllText(jsonFilePath, jasonData);
+            //Reading data from file
+            string jasonDataRead = File.ReadAllText(jsonFilePath);
+            JsonConvert.DeserializeObject(jasonDataRead);
+            //List<Contact> lists = JsonConvert.DeserializeObject<List<Contact>>(jasonDataRead);
         }
     }
 }
